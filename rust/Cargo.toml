@@ -1,0 +1,10 @@
+[package]
+name = "rust_regression"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+ndarray = "0.15"
+ndarray-linalg = { version = "0.16", features = ["openblas"] }
+csv = "1.4"
+procinfo = "0.4.2"

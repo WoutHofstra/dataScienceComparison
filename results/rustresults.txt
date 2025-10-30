@@ -1,0 +1,4 @@
+Linear Regression Benchmark (Rust, 10 runs)
+Average R²: 0.9269
+Average runtime: 0.000047 seconds
+Average memory peak: 5632.00 KB
