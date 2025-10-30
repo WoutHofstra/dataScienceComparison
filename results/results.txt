@@ -1,6 +1,0 @@
-
-Python:
-Linear Regression Benchmark (10 runs)
-Average R²: 0.9268
-Average runtime: 0.000086 seconds
-Average memory peak: 32.13 KB

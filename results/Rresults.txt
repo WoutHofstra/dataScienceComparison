@@ -1,0 +1,4 @@
+Linear Regression Benchmark (R, 10 runs, raw matrix)
+Average R²: 0.9268
+Average runtime: 0.079918 seconds
+Average memory peak: 6.10 KB

@@ -5,7 +5,7 @@ import tracemalloc
 
 # Paths
 csv_path = "/home/hofst/dataScienceComparison/datasets/dataset.csv"
-results_path = "/home/hofst/dataScienceComparison/results/results.txt"
+results_path = "/home/hofst/dataScienceComparison/results/pythonresults.txt"
 
 df = pd.read_csv(csv_path, header=None)
 X = df.iloc[:, :-1].values
@@ -50,7 +50,7 @@ print(f"Average memory peak: {avg_memory:.2f} KB")
 
 # Write to results.txt
 with open(results_path, "w") as f:
-    f.write("Linear Regression Benchmark (10 runs)\n")
+    f.write("Linear Regression Benchmark (Python, 10 runs)\n")
     f.write(f"Average R²: {avg_r2:.4f}\n")
     f.write(f"Average runtime: {avg_runtime:.6f} seconds\n")
     f.write(f"Average memory peak: {avg_memory:.2f} KB\n")
