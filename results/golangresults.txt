@@ -1,0 +1,4 @@
+Linear Regression Benchmark (Go, 10 runs)
+Average R²: 0.9268
+Average runtime: 0.000063 seconds
+Average memory peak: 84.80 KB
