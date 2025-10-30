@@ -3,30 +3,55 @@ import pandas as pd
 import time
 import tracemalloc
 
-csv_path = input("Enter the path to your CSV file: ")
-df = pd.read_csv(csv_path)
+# Paths
+csv_path = "/home/hofst/dataScienceComparison/datasets/dataset.csv"
+results_path = "/home/hofst/dataScienceComparison/results/results.txt"
 
+df = pd.read_csv(csv_path, header=None)
 X = df.iloc[:, :-1].values
 y = df.iloc[:, -1].values
-
 X_intercept = np.hstack([np.ones((X.shape[0], 1)), X])
 
-start_time = time.time()
-tracemalloc.start()
+# Lists to store results
+r2_list = []
+runtime_list = []
+memory_list = []
 
-beta_hat = np.linalg.inv(X_intercept.T @ X_intercept) @ X_intercept.T @ y
+# Repeat test 10 times
+for i in range(10):
+    start_time = time.time()
+    tracemalloc.start()
 
-y_pred = X_intercept @ beta_hat
+    beta_hat = np.linalg.inv(X_intercept.T @ X_intercept) @ X_intercept.T @ y
+    y_pred = X_intercept @ beta_hat
 
-current, peak = tracemalloc.get_traced_memory()
-tracemalloc.stop()
-end_time = time.time()
+    current, peak = tracemalloc.get_traced_memory()
+    tracemalloc.stop()
+    end_time = time.time()
 
-ss_res = np.sum((y - y_pred) ** 2)
-ss_tot = np.sum((y - np.mean(y)) ** 2)
-r_squared = 1 - (ss_res / ss_tot)
+    ss_res = np.sum((y - y_pred) ** 2)
+    ss_tot = np.sum((y - np.mean(y)) ** 2)
+    r_squared = 1 - (ss_res / ss_tot)
 
-print("Estimated coefficients:", beta_hat)
-print(f"R² score: {r_squared:.4f}")
-print(f"Runtime: {end_time - start_time:.6f} seconds")
-print(f"Memory peak: {peak / 1024:.2f} KB")
+    # Store results
+    r2_list.append(r_squared)
+    runtime_list.append(end_time - start_time)
+    memory_list.append(peak / 1024)  # in KB
+
+# Compute averages
+avg_r2 = np.mean(r2_list)
+avg_runtime = np.mean(runtime_list)
+avg_memory = np.mean(memory_list)
+
+# Print to console
+print(f"Average R²: {avg_r2:.4f}")
+print(f"Average runtime: {avg_runtime:.6f} seconds")
+print(f"Average memory peak: {avg_memory:.2f} KB")
+
+# Write to results.txt
+with open(results_path, "w") as f:
+    f.write("Linear Regression Benchmark (10 runs)\n")
+    f.write(f"Average R²: {avg_r2:.4f}\n")
+    f.write(f"Average runtime: {avg_runtime:.6f} seconds\n")
+    f.write(f"Average memory peak: {avg_memory:.2f} KB\n")
+
