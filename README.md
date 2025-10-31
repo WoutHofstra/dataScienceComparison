@@ -5,7 +5,7 @@ In this project, I have implemented a simple linear regression model in five dif
 The goal of this was to compare their runtimes, memory usage and I wanted to figure out which one would actually be the most suitable to perform data analytics/ data science with.  
 
 ## My hypothesis:  
-I assume Python will be the slowest language out of these, as it is known for being really slow. I do think its slowness will be countered by the libraries it can use, as these can make Python seem faster most of the time. I think either Rust of Golang will be the fastest language.
+I assume Python will be the slowest language out of these, as it is known for being really slow. I do think its slowness will be countered by the libraries it can use, as these can make Python seem faster most of the time. I think either Rust or Golang will be the fastest language.
 
 ## Steps:  
 First I obtained a simple dataset which I store inside the datasets directory.  
